@@ -1,8 +1,8 @@
 name: actions
-run-name: ${{ github.actor }} is deploying React Apps
+run-name: ${{ github.actor }} is deploying React App
 on: [push]
 jobs:
-  check-bats-version:
+  deploy-app:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
