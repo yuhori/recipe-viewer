@@ -1,4 +1,4 @@
-package model
+package models
 
 import (
 	"fmt"
@@ -17,4 +17,14 @@ func InitDB() {
 	database := config.GetString("MySQL_DATABASE")
 	dns := fmt.Sprintf("%s:%s@tcp(%s)/%s", user, password, endpoint, database)
 	Db, err = gorm.Open(mysql.Open(dns), &gorm.Config())
+	if err != nil {
+		return err
+	}
+
+	autoMigration()
+	return nil
+}
+
+func autoMigration() {
+	Db.autoMigration(&Recipe{})
 }
