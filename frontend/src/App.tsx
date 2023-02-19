@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/list" element={<List />} />
+        <Route path="/recipe-viewer/list" element={<List />} />
       </Routes>
     </div>
   );
