@@ -3,20 +3,21 @@ package models
 import (
 	"fmt"
 
+	"github.com/yuhori/recipe-viewer/configs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-var Db *gorm.Db
+var Db *gorm.DB
 var err error
 
-func InitDB() {
-	user := config.GetString("MySQL_USER")
-	password := config.GetString("MySQL_PASSWORD")
-	endpoint := config.GetString("MySQL_ENDPOINT")
-	database := config.GetString("MySQL_DATABASE")
+func InitDB() error {
+	user := configs.GetString("MySQL_USER")
+	password := configs.GetString("MySQL_PASSWORD")
+	endpoint := configs.GetString("MySQL_ENDPOINT")
+	database := configs.GetString("MySQL_DATABASE")
 	dns := fmt.Sprintf("%s:%s@tcp(%s)/%s", user, password, endpoint, database)
-	Db, err = gorm.Open(mysql.Open(dns), &gorm.Config())
+	Db, err = gorm.Open(mysql.Open(dns), &gorm.Config{})
 	if err != nil {
 		return err
 	}
@@ -26,5 +27,5 @@ func InitDB() {
 }
 
 func autoMigration() {
-	Db.autoMigration(&Recipe{})
+	Db.AutoMigrate(&Recipe{})
 }
