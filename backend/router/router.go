@@ -7,10 +7,9 @@ import (
 
 func Init() {
 	r := gin.Default()
-	r.GET("/list", controllers.FetchAll)
-	r.GET("/:id", controllers.Fetch)
-	r.GET("/search", controllers.Search)
-	r.POST("/", controllers.Store)
-	r.Group("/api/v1")
+	r.GET("/api/v1/list", controllers.FetchAll)
+	r.GET("/api/v1/:id", controllers.Fetch)
+	r.GET("/api/v1/search", controllers.Search)
+	r.POST("/api/v1", controllers.Store)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
