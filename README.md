@@ -1,2 +1,2 @@
 # recipe-viewer
-- [Recipe Viewer](https://github.com/yuhori/recipe-viewer)
+- [Recipe Viewer](https://yuhori.github.io/recipe-viewer/)
