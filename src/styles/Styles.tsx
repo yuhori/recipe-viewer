@@ -1,4 +1,4 @@
-const styles = {
+const Styles = {
     grid: {
       '.MuiDataGrid-toolbarContainer': {
         borderBottom: 'solid 1px rgba(224, 224, 224, 1)'  
@@ -14,4 +14,4 @@ const styles = {
     }
 }
 
-export default styles
+export default Styles

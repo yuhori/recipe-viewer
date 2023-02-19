@@ -3,20 +3,15 @@ import PaidIcon from '@mui/icons-material/Paid';
 import React from 'react';
 import axios from 'axios';
 import Styles from '../styles/Styles'
+import { Button } from '@mui/material';
 
 
 const rows: GridRowsProp = [
   {
     id: "1",
-    title: '麻婆豆腐',
+    name: '麻婆豆腐',
     link: 'https://www.taishi-food.co.jp/recipes/item/15',
   },
-];
-
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'id', width: 150 },
-  { field: 'title', headerName: 'title', width: 150 },
-  { field: 'link', headerName: 'link', width: 150 },
 ];
 
 
@@ -30,7 +25,24 @@ function List() {
 //       setRows(response.data);
 //     });
 //   }, []);
-    
+  // ボタンが押された時の処理
+  const handleClick = (linkUrl: string) => {
+    // リンク URL に移動
+    window.location.href = linkUrl;
+  };
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'id'},
+    { field: 'name', headerName: '名前'},
+    {
+      field: 'openButton',
+      headerName: '詳細',
+      sortable: false,
+      width: 90,
+      renderCell: (params) => <Button variant="contained" color="primary" onClick={() => handleClick(params.row.link)} >詳細</Button>
+    },
+  ];
+
   return (
     <div className="App">
       <h2><PaidIcon></PaidIcon>Recipe Viewer<PaidIcon></PaidIcon></h2>
