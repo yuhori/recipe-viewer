@@ -12,10 +12,10 @@ var Db *gorm.DB
 var err error
 
 func InitDB() error {
-	user := configs.GetString("MySQL_USER")
-	password := configs.GetString("MySQL_PASSWORD")
-	endpoint := configs.GetString("MySQL_ENDPOINT")
-	database := configs.GetString("MySQL_DATABASE")
+	user := configs.GetString("MYSQL_USER")
+	password := configs.GetString("MYSQL_PASSWORD")
+	endpoint := configs.GetString("MYSQL_ENDPOINT")
+	database := configs.GetString("MYSQL_DATABASE")
 	dns := fmt.Sprintf("%s:%s@tcp(%s)/%s", user, password, endpoint, database)
 	Db, err = gorm.Open(mysql.Open(dns), &gorm.Config{})
 	if err != nil {
