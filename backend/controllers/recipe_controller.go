@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"encoding/json"
+	"io"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -27,19 +29,52 @@ func (rc *RecipeController) FetchAll(c *gin.Context) {
 }
 
 func (rc *RecipeController) Fetch(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
-	})
+	r, err := models.GetOne(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"FetachOne": "NG",
+		})
+	}
+	c.JSON(http.StatusOK, r)
 }
 
 func (rc *RecipeController) Search(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
+		"Search": "OK",
 	})
 }
 
 func (rc *RecipeController) Store(c *gin.Context) {
+	var r models.Recipe
+	if err := Parse(&r, c.Request.Body); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"Store": "NG",
+		})
+	}
 	c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
+		"Store": "OK",
 	})
+}
+
+func (rc *RecipeController) Delete(c *gin.Context) {
+	if err := models.Delete(c.Param("id")); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"Delete": "NG",
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"Search": "OK",
+	})
+}
+
+func Parse(out interface{}, stream io.ReadCloser) (err error) {
+	var jsonData []byte
+	if jsonData, err = io.ReadAll(stream); err != nil {
+		return err
+	}
+
+	if err := json.Unmarshal(jsonData, out); err != nil {
+		return err
+	}
+	return nil
 }

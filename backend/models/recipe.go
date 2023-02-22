@@ -22,9 +22,9 @@ func GetAll() ([]Recipe, error) {
 	return rs, nil
 }
 
-func GetOne() (Recipe, error) {
+func GetOne(id string) (Recipe, error) {
 	var r Recipe
-	result := Db.First(&r)
+	result := Db.First(&r, id)
 	if result.Error != nil {
 		return Recipe{}, result.Error
 	}
