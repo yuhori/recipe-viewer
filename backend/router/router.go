@@ -13,5 +13,6 @@ func Init() {
 	v1.GET("/:id", rc.Fetch)
 	v1.GET("/search", rc.Search)
 	v1.POST("/store", rc.Store)
+	v1.POST("/delete", rc.Store)
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
