@@ -6,19 +6,11 @@ import { Button } from '@mui/material';
 import BlenderIcon from '@mui/icons-material/Blender';
 
 
-// const rows: GridRowsProp = [
-//   {
-//     id: "1",
-//     name: '麻婆豆腐',
-//     link: 'https://www.taishi-food.co.jp/recipes/item/15',
-//   },
-// ];
-
 
 function List() {
   const [rows, setRows] = React.useState<GridRowsProp>([]);
   React.useEffect(() => {
-    const url = 'http://localhost:8080/api/v1/recipes/list';
+    const url = 'http://ik1-432-48290.vs.sakura.ne.jp:8080/api/v1/recipes/list';
     axios.get(url).then((response) => {
       console.log(response.data);
       setRows(response.data);
