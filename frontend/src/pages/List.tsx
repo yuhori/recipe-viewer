@@ -6,25 +6,25 @@ import Styles from '../styles/Styles'
 import { Button } from '@mui/material';
 
 
-const rows: GridRowsProp = [
-  {
-    id: "1",
-    name: '麻婆豆腐',
-    link: 'https://www.taishi-food.co.jp/recipes/item/15',
-  },
-];
+// const rows: GridRowsProp = [
+//   {
+//     id: "1",
+//     name: '麻婆豆腐',
+//     link: 'https://www.taishi-food.co.jp/recipes/item/15',
+//   },
+// ];
 
 
 function List() {
-//   const [rows, setRows] = React.useState<GridRowsProp>([]);
-//   React.useEffect(() => {
-//     // cors の問題で、リクエストに失敗する
-//     const url = 'https://emaxis.jp/web/api/v1.php?col=doc_pdf_all';
-//     axios.get(url).then((response) => {
-//       console.log(response.data);
-//       setRows(response.data);
-//     });
-//   }, []);
+  const [rows, setRows] = React.useState<GridRowsProp>([]);
+  React.useEffect(() => {
+    const url = 'http://localhost:8080/api/v1/recipes/list';
+    axios.get(url).then((response) => {
+      console.log(response.data);
+      setRows(response.data);
+    });
+  }, []);
+
   // ボタンが押された時の処理
   const handleClick = (linkUrl: string) => {
     // リンク URL に移動
