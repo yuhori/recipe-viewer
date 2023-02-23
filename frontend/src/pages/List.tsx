@@ -24,7 +24,11 @@ function List() {
 
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'id'},
-    { field: 'name', headerName: '名前'},
+    {
+      field: 'name',
+      headerName: '名前',
+      width: 400,
+    },
     {
       field: 'openButton',
       headerName: '詳細',
