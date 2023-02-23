@@ -24,6 +24,7 @@ func (rc *RecipeController) FetchAll(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"FetachAll": "NG",
 		})
+		return
 	}
 	c.JSON(http.StatusOK, rs)
 }
@@ -34,6 +35,7 @@ func (rc *RecipeController) Fetch(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"FetachOne": "NG",
 		})
+		return
 	}
 	c.JSON(http.StatusOK, r)
 }
@@ -48,8 +50,15 @@ func (rc *RecipeController) Store(c *gin.Context) {
 	var r models.Recipe
 	if err := Parse(&r, c.Request.Body); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"Store": "NG",
+			"Parse": "NG",
 		})
+		return
+	}
+	if err := models.Create(r); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"Create": "NG",
+		})
+		return
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"Store": "OK",

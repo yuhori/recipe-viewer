@@ -32,7 +32,7 @@ function List() {
   };
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'id'},
+    // { field: 'id', headerName: 'id'},
     { field: 'name', headerName: '名前'},
     {
       field: 'openButton',
@@ -48,7 +48,7 @@ function List() {
       <h2><PaidIcon></PaidIcon>Recipe Viewer<PaidIcon></PaidIcon></h2>
       <div style={{ height: 300, width: '100%' }}>
         <DataGrid
-        //   getRowId={(row) => row.fund_id}
+          getRowId={(row) => row.ID}
           sx={Styles.grid}
           rows={rows}
           columns={columns}

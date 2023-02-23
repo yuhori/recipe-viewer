@@ -51,8 +51,8 @@ func Search(params url.Values) ([]Recipe, error) {
 	return rs, nil
 }
 
-func Create(r *Recipe) error {
-	result := Db.First(r)
+func Create(r Recipe) error {
+	result := Db.Create(&r)
 	if result.Error != nil {
 		return result.Error
 	}
