@@ -12,7 +12,6 @@ function List() {
   React.useEffect(() => {
     const url = 'http://ik1-432-48290.vs.sakura.ne.jp:8080/api/v1/recipes/list';
     axios.get(url).then((response) => {
-      console.log(response.data);
       setRows(response.data);
     });
   }, []);
