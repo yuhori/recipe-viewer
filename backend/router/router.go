@@ -41,11 +41,14 @@ func Init() {
 
 	rc := controllers.NewRecipeController()
 	v1 := r.Group("/api/v1/recipes")
+	// SSL 証明書発行時に使った
+	// v1 := r.Group("")
+	// v1.Static("/.well-known/pki-validation", "./ssl_valid")
 	v1.GET("/list", rc.FetchAll)
 	v1.GET("/:id", rc.Fetch)
 	v1.GET("/search", rc.Search)
 	v1.POST("/store", rc.Store)
 	v1.POST("/delete", rc.Store)
-	// r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
-	r.RunTLS(":8080", "./server.pem", "./server.key")
+	// r.Run("0.0.0.0:80") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.RunTLS(":8080", "./server.pem", "./server_fixed.key")
 }
