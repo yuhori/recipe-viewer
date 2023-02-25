@@ -16,7 +16,7 @@ func Init() {
 		// アクセスを許可したいアクセス元
 		AllowOrigins: []string{
 			"http://localhost:3000",
-			"https://yuhori.github.io/recipe-viewer",
+			"https://yuhori.github.io",
 		},
 		// アクセスを許可したいHTTPメソッド(以下の例だとPUTやDELETEはアクセスできません)
 		AllowMethods: []string{
