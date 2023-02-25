@@ -10,7 +10,7 @@ import BlenderIcon from '@mui/icons-material/Blender';
 function List() {
   const [rows, setRows] = React.useState<GridRowsProp>([]);
   React.useEffect(() => {
-    const url = 'http://ik1-432-48290.vs.sakura.ne.jp:8080/api/v1/recipes/list';
+    const url = 'https://www.yuhori-api.com:8080/api/v1/recipes/list';
     axios.get(url).then((response) => {
       setRows(response.data);
     });
